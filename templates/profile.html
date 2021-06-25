@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% block banner_title %} პროფილი {%endblock%}
+{% block title %} პროფილი {%endblock%} 
+{% block content %}
+
+
+
+<center>{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul style="list-style-type: none; font-weight: bold; background-color: beige; padding:10px; border-radius:4px;" class=flashes>
+    {% for message in messages %}
+        <li>{{ message | safe }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+</center>
+
+
+<div class="row ">
+
+<h2>ჩემი ინფორმაცია</h2>
+<hr>
+
+<form action="/update-user" method="POST">
+<div class="form-group">
+    <label for="exampleInputEmail1">სრული სახელი</label>
+    <input required value="{{user.full_name}}" type="text" name="full_name" placeholder="სრული სახელი" class="form-control" id="">
+</div>
+
+<br>
+
+<div class="form-group">
+    <label for="exampleInputEmail1">იმეილი</label>
+    <input required value="{{user.email}}" type="text" name="email" placeholder="იმეილი" class="form-control" id="">
+</div>
+<br>
+
+<input type="submit" name="submit" value="პროფილის განახლება" class="btn btn-success" id="">
+
+</form>
+
+
+<div style="margin-top: 50px;" class="update_password">
+<h2>პაროლის განახლება</h2>
+<hr>
+
+<form action="/update-password" method="POST">
+<div class="form-group">
+    <label for="exampleInputEmail1">ამჟამინდელი პაროლი</label>
+    <input required type="password" name="current_password" placeholder="ამჟამინდელი პაროლი" class="form-control" id="">
+</div>
+<br>
+<div class="form-group">
+    <label for="exampleInputEmail1">ახალი პაროლი</label>
+    <input required type="password" name="new_password" placeholder="ამჟამინდელი პაროლი" class="form-control" id="">
+</div>
+<br>
+
+<div class="form-group">
+    <label for="exampleInputEmail1">გაიმეორეთ ახალი პაროლი</label>
+    <input required type="password" name="new_password_confirm" placeholder="გაიმეორეთ ახალი პაროლი" class="form-control" id="">
+</div>
+
+<br>
+<input type="submit" name="submit" value="პაროლის განახლება" class="btn btn-success" id="">
+</form>
+
+</div>
+
+
+<br>
+
+
+<br>
+
+<br>
+
+<br>
+
+
+<div class="chemi_gancxadebebi" style="margin-top: 35px;">
+<h2>ჩემი განცხადებები</h2>
+<hr>
+
+{% for product in products %}
+<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+<div class="col mb-5">
+    <div class="card h-100">
+        <!-- Product image-->
+        <img class="card-img-top" src="/static/product_images/{{product.image_link}}" alt="..." />
+        <!-- Product details-->
+        <div class="card-body p-4">
+            <div class="text-center">
+                <!-- Product name-->
+                <a style="text-decoration:none" href="/product/{{product.id}}"><h5 class="fw-bolder">{{product.title}}</h5></a>
+                <!-- Product price-->
+                ₾{{product.price}}
+
+
+            </div>
+        </div>
+        <!-- Product actions-->
+        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/product/{{product.id}}">სრულად</a></div>
+            {% if session['user_id'] == product.user_id and session['logged'] %}
+            <br>
+            <div class="text-center"><a class="btn btn-success mt-auto" href="/edit/{{product.id}}">რედაქტირება</a></div>
+            <br>
+            <div class="text-center"><a class="btn btn-danger mt-auto" href="/delete/{{product.id}}">წაშლა</a></div>
+
+        {% endif %}
+
+        </div>
+    </div>
+</div>
+</div>
+{% endfor %}
+
+</div>
+
+
+</div>
+
+{%endblock%}

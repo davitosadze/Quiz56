@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block banner_title %} {{product[0].title}} {%endblock%}
+{% block title %} {{product[0].title}} {%endblock%} 
+{% block content %}
+
+<center>{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul style="list-style-type: none; font-weight: bold; background-color: beige; padding:10px; border-radius:4px;" class=flashes>
+    {% for message in messages %}
+        <li>{{ message | safe }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+ 
+</center>
+
+    <div class="row">
+      <div class="col-md-6 mb-4 mb-md-0">
+  
+        <div id="mdb-lightbox-ui"></div>
+  
+        <div class="mdb-lightbox">
+          <div class="row product-gallery mx-1">
+            <div class="col-12 mb-0">
+              <figure class="view overlay rounded z-depth-1 main-img">
+ 
+                  <img src="/static/product_images/{{product[0].image_link}}"
+                    class="img-fluid z-depth-1">
+ 
+              </figure>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+      <div class="col-md-6">
+  
+        <h5>{{product[0].title}}</h5>
+        <p class="mb-2 text-muted text-uppercase small">{{product[2].category_name}}</p>
+
+        
+        <p><span class="mr-1"><strong>₾{{product[0].price}}</strong></span></p>
+        <p class="pt-1">{{product[0].description}}</p>
+        <div class="table-responsive">
+            <table class="table table-sm table-borderless mb-0">
+              <tbody>
+                <tr>
+                  <th class="pl-0 w-25" scope="row"><strong>მომხმარებელი</strong></th>
+                  <td>{{product[1].full_name}}</td>
+                </tr>
+                <tr>
+                    <th class="pl-0 w-25" scope="row"><strong>იმეილი</strong></th>
+                    <td>{{product[1].email}}</td>
+                  </tr>
+
+                <tr>
+                  <th class="pl-0 w-25" scope="row"><strong>ადგილმდებარეობა</strong></th>
+                  <td>{{product[0].location}}</td>
+                </tr>
+                <tr>
+                  <th class="pl-0 w-25" scope="row"><strong>ნომერი</strong></th>
+                  <td>{{product[0].mobile}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        <hr>
+ 
+        <!-- <button type="button" class="btn btn-primary btn-md mr-1 mb-2">ყიდვა</button> -->
+ 
+      </div>
+    </div>
+ 
+{%endblock%}

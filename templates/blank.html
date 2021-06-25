@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block banner_title %} შედეგი {%endblock%}
+{% block title %} შედეგი {%endblock%} 
+{% block content %}
+<center>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul style="list-style-type: none; font-weight: bold; background-color: beige; padding:10px; border-radius:4px;" class=flashes>
+        {% for message in messages %}
+        <li>{{ message | safe }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+</center>
+{%endblock%}

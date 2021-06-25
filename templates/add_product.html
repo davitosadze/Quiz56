@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block banner_title %} პროდუქტის დამატება {%endblock%}
+{% block title %} პროდუქტის დამატება {%endblock%} 
+{% block content %}
+
+<div class="row col-6 justify-content-center">
+
+<form method="POST" action="/add-product" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="exampleInputEmail1">დასახელება</label>
+      <input required type="text" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="დასახელება">
+    </div>
+
+    <br>
+
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">კატეგორია</label>
+      <select name="category" class="form-control" id="">
+        <option value="0">აირჩიეთ კატეგორია</option>
+        {% for category in categories %}
+        <option value="{{category.id}}">{{category.category_name}}</option>
+        {%endfor%}
+      </select>
+    </div>
+
+    <br>
+
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">ფასი</label>
+        <input required type="text" name="price" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ფასი">
+    </div>
+    
+    <br>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">ლოკაცია</label>
+        <input required type="text" name="location" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ლოკაცია">
+    </div>
+
+    <br>
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">ნომერი</label>
+      <input required type="text" name="mobile" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ნომერი">
+  </div>
+
+
+
+    <br>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">სურათი</label>
+        <input type="file" name="image" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+
+
+     <br>
+    <div class="form-group">
+      <label for="exampleInputPassword1">აღწერა</label>
+      <textarea required placeholder="აღწერა" name="description" id="" class="form-control" cols="30" rows="5"></textarea>
+    </div>
+ <br>
+    <button type="submit" class="btn btn-primary">დამატება</button>
+  </form>
+</div>
+
+
+{%endblock%}

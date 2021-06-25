@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block banner_title %} მთავარი {%endblock%}
+{% block title %} მთავარი {%endblock%} 
+{% block content %}
+
+<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+    {% for product in products %}
+
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="/static/product_images/{{product.image_link}}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <a style="text-decoration:none" href="/product/{{product.id}}"><h5 class="fw-bolder">{{product.title}}</h5></a>
+                                    <!-- Product price-->
+                                    ₾{{product.price}}
+
+
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/product/{{product.id}}">სრულად</a></div>
+                                {% if session['user_id'] == product.user_id and session['logged'] %}
+                                <br>
+                                <div class="text-center"><a class="btn btn-danger mt-auto" href="/delete/{{product.id}}">წაშლა</a></div>
+
+                            {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+            {% endfor %}
+
+                    
+                    </div>
+
+{%endblock%}

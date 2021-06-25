@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block banner_title %} რეგისტრაცია {%endblock%}
+{% block title %} რეგისტრაცია {%endblock%} 
+{% block content %}
+
+<center>{% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <ul style="list-style-type: none; font-weight: bold; background-color: beige; padding:10px; border-radius:4px;" class=flashes>
+  {% for message in messages %}
+      <li>{{ message | safe }}</li>
+  {% endfor %}
+  </ul>
+{% endif %}
+{% endwith %}
+
+<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+    <form method="POST" action="/register">
+        <div class="form-group">
+          <label for="exampleInputEmail1">იმეილი</label>
+          <input required type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="იმეილი">
+        </div>
+
+        <br>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">სრული სახელი</label>
+            <input required type="text" name="full_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="სრული სახელი">
+          </div>
+  
+          <br>
+
+        <div class="form-group">
+          <label for="exampleInputPassword1">პაროლი</label>
+          <input required type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="პაროლი">
+        </div>
+
+        <br>
+        
+        <button type="submit" class="btn btn-primary">რეგისტრაცია</button>
+      </form>
+
+</div>
+
+</center>
+
+
+{%endblock%}

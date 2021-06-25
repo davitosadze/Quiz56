@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block banner_title %} პროდუქტის რედაქტირება {%endblock%}
+{% block title %} პროდუქტის რედაქტირება {%endblock%} 
+{% block content %}
+
+<div class="row col-6 justify-content-center">
+
+<form method="POST" action="/edit/{{product.id}}" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="exampleInputEmail1">დასახელება</label>
+      <input required type="text" value="{{product.title}}" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="დასახელება">
+    </div>
+
+    <br>
+
+
+    <div class="selector form-group">
+      <label for="exampleInputEmail1">კატეგორია</label>
+      <select name="category" class="form-control" id="">
+        <option value="0">აირჩიეთ კატეგორია</option>
+        {% for category in categories %}
+        <option value="{{category.id}}">{{category.category_name}}</option>
+        {%endfor%}
+      </select>
+    </div>
+
+    <br>
+
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">ფასი</label>
+        <input required type="text" value="{{product.price}}" name="price" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ფასი">
+    </div>
+    
+    <br>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">ლოკაცია</label>
+        <input required type="text" value="{{product.location}}"  name="location" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ლოკაცია">
+    </div>
+
+    <br>
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">ნომერი</label>
+      <input required type="text" value="{{product.mobile}}"  name="mobile" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ნომერი">
+  </div>
+
+
+
+    <br>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">სურათი</label>
+        <input type="file" name="image" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+
+
+     <br>
+    <div class="form-group">
+      <label for="exampleInputPassword1">აღწერა</label>
+      <textarea required placeholder="აღწერა" name="description" id="" class="form-control" cols="30" rows="5">{{product.description}}</textarea>
+    </div>
+ <br>
+    <button type="submit" class="btn btn-primary">განახლება</button>
+  </form>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+$(".selector select").val({{product.category_id}})
+</script>
+
+{%endblock%}
